@@ -21,20 +21,33 @@ public class Order {
     private Head head;
 
 
-    public String getDocumentName(){
+    public String getDocumentName() {
         return documentName;
     }
-    public String getNumber(){
+
+    public String getNumber() {
         return number;
     }
-    public String getDate(){
+
+    public String getDate() {
         return date;
     }
-    public String getDeliveryDate(){
+
+    public String getDeliveryDate() {
         return deliveryDate;
     }
-    public String getCampainNumber(){
+
+    public String getCampainNumber() {
         return campainNumber;
     }
 
+    public Head getHead(){
+        return head;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [documentName=" + documentName + ", number=" + number + ", date=" + date + ", deliveryDate=" + deliveryDate + ", campainNumber=" + campainNumber + head + "]";
+
+    }
 }

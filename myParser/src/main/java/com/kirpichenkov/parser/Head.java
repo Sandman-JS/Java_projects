@@ -14,7 +14,7 @@ public class Head {
     @XStreamImplicit
     private List<Position> positionList;
     @XStreamAlias("DELIVERYPLACE")
-    protected String deliveryPlace;
+    private String deliveryPlace;
     @XStreamAlias("SENDER")
     private String sender;
     @XStreamAlias("RECIPIENT")
@@ -41,28 +41,48 @@ public class Head {
 
     @Override
     public String toString() {
-        return "Head [deliveryPlace=" + deliveryPlace + ", sender=" + sender + ", recipient=" + recipient + ", positionList=" + positionList + "]";
+        return " Head [deliveryPlace=" + deliveryPlace + ", sender=" + sender + ", recipient=" + recipient + ", positionList=" + positionList + "]";
     }
 
 }
 @XStreamAlias("POSITION")
 class Position {
-   /* @XStreamImplicit
-    private List<Charactiristic> charactiristics = new ArrayList<Charactiristic>();*/
     @XStreamAlias("POSITIONNUMBER")
     private String positionNumber;
     @XStreamAlias("PRODUCT")
     private String product;
-
+    @XStreamAlias("PRODUCTIDBUYER")
+    private String productIdByer;
+    @XStreamAlias("ORDEREDQUANTITY")
+    private String orderQuantity;
+    @XStreamAlias("ORDERUNIT")
+    private String orderUnit;
+    @XStreamAlias("ORDERPRICE")
+    private Double orderPrice;
+    @XStreamAlias("PRICEWITHVAT")
+    private Double prieWithVat;
+    @XStreamAlias("VAT")
+    private Double vat;
     @XStreamAlias("CHARACTERISTIC")
     private Characteristic characteristic;
 
+    @Override
+    public String toString() {
+        return "positionList [positionNumber=" + positionNumber + ", product=" + product +", productIdByer=" + productIdByer +", orderQuantity=" + orderQuantity + ", orderUnit=" + orderUnit +", orderPrice=" + orderPrice +", orderPrice=" + prieWithVat +", vat=" + vat  + characteristic +"]";
 
 
+    }
 }
 @XStreamAlias("CHARACTERISTIC")
 class Characteristic{
     @XStreamAlias("DESCRIPTION")
     private String description;
+
+    @Override
+    public String toString() {
+        return ", Characteristic [description=" + description + "]";
+
+
+    }
 
 }

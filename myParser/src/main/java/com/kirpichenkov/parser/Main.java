@@ -2,6 +2,8 @@ package com.kirpichenkov.parser;
 
 import com.sun.org.apache.xpath.internal.operations.Or;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import javafx.geometry.Pos;
@@ -17,31 +19,42 @@ import java.sql.*;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader fis = new FileReader("src/main/resources/order.xml");
+        FileInputStream fis = new FileInputStream("src/main/resources/order.xml");
         XStream xs = new XStream(new StaxDriver());
-        xs.processAnnotations(Order.class);     // inform XStream to parse annotations in Order class
-        xs.processAnnotations(Head.class);
-        xs.processAnnotations(Position.class);
-        xs.processAnnotations(Characteristic.class);
-        Head head = (Head) xs.fromXML(fis);
-        System.out.println(head.getPositionList().get(0));
+        xs.processAnnotations(Order.class);
+        Order order = (Order) xs.fromXML(fis);
+
+        XStream xstream = new XStream(new JettisonMappedXmlDriver ());
+        String json = xstream.toXML(order);
+        System.out.println(json);
 
 
 
+        DataBase db = new DataBase();
+        try {
+        String url = "jdbc:mysql://127.0.0.1:3306/mydbtest1?autoReconnect=true&useSSL=false";
+        String user = "kirpichenkov";
+        String password = "1001";
 
+        Connection con = DriverManager.getConnection(url, user, password);
 
+        try {
 
+            db.insert(con, order.getNumber(), order.getDate(), order.getDeliveryDate(), order.getCampainNumber(), order.getHead().getDeliveryPlace(), order.getHead().getSender(), order.getHead().getRecipient(), order.getHead().getEdiInterchangeID());
 
+        }  finally {
+                con.close();
+            }
 
-
-
-/*        DataBase db = new DataBase();
-        db.getConnect();*/
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
 
 
     }
-    }
+
 
