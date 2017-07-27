@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="exite_ru@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="exite_ru">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mydbtest1"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sys"/>
+    <table id="8" parent="2" name="billing"/>
+    <table id="9" parent="2" name="doc_types"/>
+    <table id="10" parent="2" name="index_vardocnum"/>
+    <column id="11" parent="8" name="intRecID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="8" name="intTypeID">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="8" name="intDocID">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="8" name="varSenderGLN">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="8" name="varRecipientGLN">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="8" name="varDate">
+      <Position>6</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <index id="17" parent="8" name="docID_fk_idx">
+      <ColNames>intDocID</ColNames>
+    </index>
+    <index id="18" parent="8" name="docNum_fj_idx">
+      <ColNames>intDocID</ColNames>
+    </index>
+    <index id="19" parent="8" name="docNum_fk_idx">
+      <ColNames>intDocID</ColNames>
+    </index>
+    <index id="20" parent="8" name="docType_fk_idx">
+      <ColNames>intTypeID</ColNames>
+    </index>
+    <key id="21" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>intTypeID
+intDocID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="22" parent="8" name="docType_fk">
+      <ColNames>intTypeID</ColNames>
+      <RefSchemaName>exite_ru</RefSchemaName>
+      <RefTableName>doc_types</RefTableName>
+      <RefColNames>intTypesID</RefColNames>
+    </foreign-key>
+    <foreign-key id="23" parent="8" name="docID_fk">
+      <ColNames>intDocID</ColNames>
+      <RefSchemaName>exite_ru</RefSchemaName>
+      <RefTableName>index_vardocnum</RefTableName>
+      <RefColNames>intDocsID</RefColNames>
+    </foreign-key>
+    <foreign-key id="24" parent="8" name="docNum_fj">
+      <ColNames>intDocID</ColNames>
+      <RefSchemaName>exite_ru</RefSchemaName>
+      <RefTableName>index_vardocnum</RefTableName>
+      <RefColNames>intDocsID</RefColNames>
+    </foreign-key>
+    <column id="25" parent="9" name="intTypesID">
+      <Position>1</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="9" name="varType">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="9" name="intTypeID_UNIQUE">
+      <ColNames>intTypesID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="28" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>intTypesID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="29" parent="9" name="intTypeID_UNIQUE">
+      <ColNames>intTypesID</ColNames>
+      <UnderlyingIndexName>intTypeID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="30" parent="10" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="31" parent="10" name="intDocsID">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="10" name="varIndex">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="33" parent="10" name="ID_UNIQUE">
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="34" parent="10" name="intDocID_idx">
+      <ColNames>intDocsID</ColNames>
+    </index>
+    <key id="35" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>intDocsID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="36" parent="10" name="ID_UNIQUE">
+      <ColNames>ID</ColNames>
+      <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
